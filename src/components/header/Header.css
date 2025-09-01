@@ -1,0 +1,21 @@
+header {
+  margin-bottom: 2rem;
+}
+
+.section_navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h2 {
+  font-size: 2rem;
+  color: #646cff;
+}
+
+.form_search {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 1rem;
+}
