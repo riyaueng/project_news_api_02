@@ -5,3 +5,8 @@
   align-items: start;
   gap: 2rem;
 }
+
+.section_newsfeed h1 {
+  text-align: center;
+  margin: 3rem;
+}

@@ -10,7 +10,14 @@ export default function NewsArticle({ article }: ArticleProps) {
   return (
     <>
       <div className="div_news_article">
-        <img src={article.urlToImage ? article.urlToImage : "Kein Bild vorhanden."} alt={article.title} />
+        {article.urlToImage ? (
+          <img src={article.urlToImage} alt={article.title} />
+        ) : (
+          <div className="div_noImg">
+            <img src="../../../public/no_img.png" alt="Kein Bild" />
+            <p>Kein Bild vorhanden.</p>
+          </div>
+        )}
         <div className="wrapper_article_text">
           <h4>{article.title}</h4>
           <p>{article.description}</p>

@@ -10,9 +10,8 @@ interface HeaderProps {
 export default function Header({ setNews }: HeaderProps) {
   const [BASE_URL] = useState<string>("https://newsapi.org/v2/everything?")
   const myKey = import.meta.env.VITE_api_key
-  console.log(myKey)
 
-  const [searchfield, setSearchfield] = useState<string>("")
+  const [searchfield, setSearchfield] = useState<string>("apple")
   const [language, setLanguage] = useState<string>("de")
   const [sorted, setSorted] = useState<string>("relevancy")
 
@@ -20,7 +19,7 @@ export default function Header({ setNews }: HeaderProps) {
   const searchfieldValue = `q=${searchfield}`
   const languageValue = `language=${language}`
   const sortedValue = `sortBy=${sorted}`
-  const url = `${BASE_URL}${searchfieldValue}&${sortedValue}${languageValue}&apiKey=${myKey}`
+  const url = `${BASE_URL}${searchfieldValue}&${sortedValue}&${languageValue}&apiKey=${myKey}`
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
@@ -51,8 +50,13 @@ export default function Header({ setNews }: HeaderProps) {
                 />
               </div>
               <div className="div_select_language">
-                <select name="language" id="language" onChange={(event) => setLanguage(event.target.value)}>
-                  <option value="language" disabled>
+                <img src="../../../public/down-arrow.png" alt="Arrow Down" />
+                <select
+                  name="language"
+                  id="language"
+                  value={language}
+                  onChange={(event) => setLanguage(event.target.value)}>
+                  <option value="" disabled>
                     Sprache wählen
                   </option>
                   <option value="ar">Arabic</option>
@@ -72,15 +76,17 @@ export default function Header({ setNews }: HeaderProps) {
               </div>
 
               <div className="div_sort">
-                <select name="sort" id="sort">
+                <img src="../../../public/down-arrow.png" alt="Arrow Down" />
+                <select name="sort" id="sort" value={sorted} onChange={(event) => setSorted(event.target.value)}>
                   <option value="relevancy">Relevanz</option>
                   <option value="popularity">Popularität</option>
                   <option value="puplishedAt">Neueste zuerst</option>
                 </select>
               </div>
-              <button type="submit" className="btn_search">
+              {/* Nicht nötig, da useEffect angewendet wird */}
+              {/* <button type="submit" className="btn_search">
                 Suchen
-              </button>
+              </button> */}
             </form>
           </nav>
         </section>

@@ -6,12 +6,11 @@ interface NewsFeedProps {
   news: INews | undefined
 }
 export default function NewsFeed({ news }: NewsFeedProps) {
-  console.log(news)
   return (
     <>
       <main>
         <section className="section_newsfeed">
-          <h3>Neues aus der Welt</h3>
+          <h1>Neues aus der Welt</h1>
           <div className="wrapper_newsfeed">
             {news ? (
               <>
