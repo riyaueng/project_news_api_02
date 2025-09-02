@@ -1,0 +1,7 @@
+.wrapper_newsfeed {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: start;
+  gap: 2rem;
+}

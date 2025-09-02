@@ -1,43 +1,39 @@
 import React, { useEffect, useState } from "react"
 import "./Header.css"
-import type { IArticle, INews } from "../../interfaces/INews"
+import type { INews } from "../../interfaces/INews"
 
 interface HeaderProps {
   news: INews | undefined
   setNews: React.Dispatch<React.SetStateAction<INews | undefined>>
 }
 
-export default function Header() {
+export default function Header({ setNews }: HeaderProps) {
   const [BASE_URL] = useState<string>("https://newsapi.org/v2/everything?")
   const myKey = import.meta.env.VITE_api_key
   console.log(myKey)
 
-  const [data, setData] = useState<IArticle[] | null>([])
   const [searchfield, setSearchfield] = useState<string>("")
   const [language, setLanguage] = useState<string>("de")
   const [sorted, setSorted] = useState<string>("relevancy")
-  const [resultBtn, setResultBtn] = useState<boolean>(false)
 
   // URL-Ergänzung für BASE_URL
   const searchfieldValue = `q=${searchfield}`
   const languageValue = `language=${language}`
   const sortedValue = `sortBy=${sorted}`
-
-  const displaySearchResult = () => {
-    setResultBtn
-  }
+  const url = `${BASE_URL}${searchfieldValue}&${sortedValue}${languageValue}&apiKey=${myKey}`
 
   useEffect(() => {
     const fetchData = async (): Promise<void> => {
-      const url = `${BASE_URL}${searchfieldValue}&${sortedValue}${languageValue}&apiKey=${myKey}`
-
       const resp = await fetch(url)
       const respInJson = await resp.json()
-      setData(respInJson.articles)
-      console.log(respInJson.articles)
+      if (respInJson.articles) {
+        setNews(respInJson)
+      }
     }
-    fetchData()
-  }, [])
+    if (searchfield.length > 2) {
+      fetchData()
+    }
+  }, [url])
 
   return (
     <>
@@ -82,7 +78,7 @@ export default function Header() {
                   <option value="puplishedAt">Neueste zuerst</option>
                 </select>
               </div>
-              <button type="submit" className="btn_search" onClick={displaySearchResult}>
+              <button type="submit" className="btn_search">
                 Suchen
               </button>
             </form>
