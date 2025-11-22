@@ -1,69 +1,73 @@
-# React + TypeScript + Vite
+# 📰 Newspaper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Eine React/TypeScript-Webanwendung zur dynamischen Darstellung aktueller Nachrichten aus der NewsAPI – mit Suchfunktion, Sprachauswahl und Sortieroptionen.
 
-Currently, two official plugins are available:
+<img width="1164" height="773" alt="newspaper_start" src="https://github.com/user-attachments/assets/3b57c2df-9107-4ee8-9b29-59cf082b56b8" />
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📋 Über das Projekt
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Newspaper ist eine Webanwendung, die aktuelle Nachrichten über die NewsAPI (`newsapi.org`) lädt und benutzerfreundlich präsentiert. Als Übungsprojekt bot es mir die Möglichkeit, API-Integration, React State Management und TypeScript-Typisierung zu vertiefen.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🛠️ Technologien
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **React** - UI-Framework mit komponentenbasierter Architektur
+- **TypeScript** - Strikte Typisierung für robuste Code-Qualität
+- **Vite** - Modernes Build-Tool und Development Server
+- **CSS3** - Modulares Styling pro Komponente
+- **NewsAPI** - REST-API für aktuelle Nachrichten (`newsapi.org`)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## ✨ Features
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- ✅ **Dynamische API-Anbindung** - Flexible Newssuche über newsapi.org
+- ✅ **Suchfunktion** - Suche nach beliebigen Nachrichtenbegriffen
+- ✅ **Sprachauswahl** - Nachrichten in verschiedenen Sprachen abrufbar
+- ✅ **Sortieroptionen** - Nach Relevanz, Popularität oder Aktualität sortieren
+- ✅ **Automatisches Fetching** - Neue API-Calls bei Änderung der Eingabefelder
+- ✅ **TypeScript-Interfaces** - Typdefinitionen für News und Artikel (`INews`, `IArticle`)
+- ✅ **Modulare Komponentenstruktur** - Wiederverwendbare Components mit eigenem CSS
+
+---
+
+## 📚 Was ich gelernt habe
+
+- **React State Management**: Verwendung von `useState` für Suchbegriff, Sprache und Sortierung
+- **useEffect für API-Calls**: Automatisches Fetching bei State-Änderungen
+- **Props-Passing**: Datenfluss von Header → Home → NewsFeed → NewsArticle
+- **TypeScript mit React**: Erstellung von Interfaces für API-Responses
+- **Dynamische URL-Erstellung**: Zusammensetzen von API-URLs aus mehreren Parametern
+- **Umgebungsvariablen**: Sicheres Handling von API-Keys mit Vite
+- **Modulares CSS**: Organisation von Styles pro Komponente
+- **Fehlerbehandlung**: Validierung von API-Daten und Error States
+
+---
+
+## 🌐 API-Funktionalität
+
+**Dynamische Parameter:**
+- **Suchbegriff**: Frei wählbar durch den Nutzer
+- **Sprache**: Mehrere Sprachen verfügbar (DE, EN, etc.)
+- **Sortierung**: Nach Relevanz, Popularität oder Aktualität
+
+**API-Call Ablauf:**
+1. Nutzer ändert Suchbegriff, Sprache oder Sortierung
+2. `useEffect` erkennt State-Änderung
+3. Neue API-URL wird dynamisch erstellt
+4. `fetch` ruft NewsAPI auf
+5. Response wird validiert und in State gespeichert
+6. NewsFeed rendert aktualisierte Artikel
+
+---
+
+## 🧩 Mögliche Erweiterungen
+
+- [ ] Kategorien-Filter (Business, Technology, Sports, etc.)
+- [ ] Pagination oder Infinite Scroll für mehr Artikel
+- [ ] Loading-Skeleton während API-Call
+- [ ] Error-Handling mit benutzerfreundlichen Fehlermeldungen
+- [ ] Datum-Filter (von/bis)
